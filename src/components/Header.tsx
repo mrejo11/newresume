@@ -1,29 +1,14 @@
+// components/Header.tsx
 "use client";
 
 import { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const socialLinks = [
-  {
-    href: "https://linkedin.com",
-    label: "LinkedIn",
-    icon: <span style={{ fontSize: "1.3em" }}>💼</span>,
-  },
-  {
-    href: "https://github.com",
-    label: "GitHub",
-    icon: <span style={{ fontSize: "1.3em" }}>💻</span>,
-  },
-  {
-    href: "https://t.me",
-    label: "Telegram",
-    icon: <span style={{ fontSize: "1.3em" }}>📱</span>,
-  },
-  {
-    href: "https://instagram.com",
-    label: "Instagram",
-    icon: <span style={{ fontSize: "1.3em" }}>📸</span>,
-  },
+  { href: "https://linkedin.com", label: "LinkedIn", icon: "💼" },
+  { href: "https://github.com", label: "GitHub", icon: "💻" },
+  { href: "https://t.me", label: "Telegram", icon: "📱" },
+  { href: "https://instagram.com", label: "Instagram", icon: "📸" },
 ];
 
 export default function Header() {
@@ -46,45 +31,41 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        scrolled ? "shadow-lg bg-white/90 backdrop-blur-md" : "bg-white/70"
+      className={`fixed w-full top-0 z-50 transition-all duration-500 ${
+        scrolled 
+          ? "py-3 bg-white/90 backdrop-blur-xl shadow-xl" 
+          : "py-5 bg-transparent"
       }`}
       dir="rtl"
-      style={{
-        fontFamily: "Vazir, Arial, sans-serif",
-        borderBottom: "1.5px solid #e2e8f0",
-      }}
     >
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
-        {/* Right: Logo/Name */}
+      <div className="container mx-auto px-4 flex items-center justify-between gap-4">
+        {/* Logo */}
         <a
           href="#home"
-          className="flex items-center gap-2 text-2xl font-extrabold text-primary hover:scale-105 transition-transform duration-300"
-          style={{ letterSpacing: "-1px" }}
+          className="flex items-center gap-2 text-2xl font-bold group"
         >
-          <span style={{ fontSize: "1.5em" }}>📝</span>
-          <span>
-            مهدی <span style={{ color: "#3b82f6" }}>رضایی</span>
+          <span className="text-cyan-500 group-hover:text-blue-600 transition-colors">📝</span>
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-600 to-blue-600">
+            مهدی <span className="font-extrabold">رضایی</span>
           </span>
         </a>
 
-        {/* Center: Navigation (desktop) */}
-        <nav className="hidden md:flex items-center gap-2 mx-auto">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-1">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="relative px-4 py-2 text-base font-semibold text-gray-700 hover:text-secondary transition-colors duration-200 group"
-              style={{ borderRadius: "8px" }}
+              className="relative px-5 py-2.5 text-base font-medium text-slate-700 hover:text-cyan-600 transition-all duration-300 group"
             >
               {item.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute bottom-0 right-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full transition-all duration-500 group-hover:w-full group-hover:right-0"></span>
             </a>
           ))}
         </nav>
 
-        {/* Left: Social icons (desktop) */}
-        <div className="hidden md:flex items-center gap-2">
+        {/* Social Icons */}
+        <div className="hidden md:flex items-center gap-3">
           {socialLinks.map((item) => (
             <a
               key={item.href}
@@ -92,66 +73,61 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               title={item.label}
-              className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-blue-50 transition-colors duration-200"
-              style={{ fontSize: "1.2em" }}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-md hover:shadow-cyan-500/20 text-lg transition-all duration-300 hover:-translate-y-1 hover:text-cyan-500"
             >
               {item.icon}
             </a>
           ))}
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setMenuOpen(true)}
-          className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200 focus:outline-none"
+          className="md:hidden p-2.5 rounded-xl bg-white/80 backdrop-blur-sm shadow-md hover:shadow-cyan-500/30 transition-all"
           aria-label="باز کردن منو"
         >
-          <Bars3Icon className="w-7 h-7 text-primary" />
+          <Bars3Icon className="w-6 h-6 text-cyan-600" />
         </button>
       </div>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile Menu */}
       {menuOpen && (
-        <div
-          className="fixed inset-0 z-50 bg-black/60 flex flex-col"
-          style={{ backdropFilter: "blur(2px)" }}
-        >
-          <div
-            className="bg-white shadow-lg rounded-b-2xl p-6 pt-4 flex flex-col gap-6 animate-fade-in-up"
-            style={{ maxWidth: 340, margin: "0 auto", marginTop: 32 }}
-          >
-            <div className="flex items-center justify-between mb-2">
+        <div className="fixed inset-0 z-50 bg-slate-900/90 backdrop-blur-xl flex flex-col">
+          <div className="bg-gradient-to-br from-slate-800 to-slate-900 shadow-2xl rounded-b-3xl p-6 pt-4 animate-slide-down">
+            <div className="flex items-center justify-between mb-8">
               <a
                 href="#home"
-                className="flex items-center gap-2 text-xl font-extrabold text-primary"
+                className="flex items-center gap-2 text-xl font-bold"
                 onClick={() => setMenuOpen(false)}
               >
-                <span style={{ fontSize: "1.3em" }}>📝</span>
-                <span>
-                  مهدی <span style={{ color: "#3b82f6" }}>رضایی</span>
+                <span className="text-cyan-400">📝</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400">
+                  مهدی <span className="font-extrabold">رضایی</span>
                 </span>
               </a>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                className="p-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 transition-colors"
                 aria-label="بستن منو"
               >
-                <XMarkIcon className="w-7 h-7 text-primary" />
+                <XMarkIcon className="w-6 h-6 text-cyan-400" />
               </button>
             </div>
-            <nav className="flex flex-col gap-2">
+            
+            <nav className="flex flex-col gap-2 mb-8">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="px-4 py-3 text-base font-semibold text-gray-700 hover:text-secondary hover:bg-blue-50 rounded-lg transition-all duration-200"
+                  className="px-5 py-4 text-lg font-medium text-slate-200 hover:text-cyan-400 hover:bg-slate-700/50 rounded-xl transition-all duration-300"
                   onClick={() => setMenuOpen(false)}
                 >
                   {item.label}
                 </a>
               ))}
             </nav>
-            <div className="flex items-center gap-2 justify-center mt-2">
+            
+            <div className="flex items-center gap-4 justify-center">
               {socialLinks.map((item) => (
                 <a
                   key={item.href}
@@ -159,15 +135,13 @@ export default function Header() {
                   target="_blank"
                   rel="noopener noreferrer"
                   title={item.label}
-                  className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-blue-50 transition-colors duration-200"
-                  style={{ fontSize: "1.2em" }}
+                  className="w-12 h-12 flex items-center justify-center rounded-full bg-slate-700 hover:bg-cyan-500/20 text-xl transition-all duration-300"
                 >
                   {item.icon}
                 </a>
               ))}
             </div>
           </div>
-          <div className="flex-1" onClick={() => setMenuOpen(false)}></div>
         </div>
       )}
     </header>

@@ -1,133 +1,92 @@
+// components/skill.tsx
 "use client";
 
-import {
-  CogIcon,
-  ComputerDesktopIcon,
-  CodeBracketIcon,
-} from "@heroicons/react/24/outline";
+import { CogIcon, ComputerDesktopIcon, CodeBracketIcon } from "@heroicons/react/24/outline";
 
 export default function Skills() {
-  // Reusing color definitions for consistency
-  const secondaryColor = "#3b82f6"; // blue-500
-  const accentColor = "#64748b"; // gray-500
-  const primaryTextColor = "#1e293b"; // gray-800
-  const mutedTextColor = "#64748b"; // gray-500
-  const lightBorderColor = "#e2e8f0"; // gray-200
-  const whiteColor = "#ffffff";
-  const lightGrayColor = "#e5e7eb"; // gray-200 for progress bar background
-
   const skillCategories = [
     {
-      icon: <CogIcon className="w-7 h-7" style={{ color: secondaryColor }} />,
+      icon: <CogIcon className="w-8 h-8 text-cyan-500" />,
       title: "نرم‌افزارهای مهندسی",
       skills: [
         { name: "Revit", level: 90 },
         { name: "AutoCAD", level: 95 },
+        { name: "ETABS", level: 85 },
+        { name: "SAP2000", level: 80 },
       ],
     },
     {
-      icon: <ComputerDesktopIcon className="w-7 h-7" style={{ color: accentColor }} />,
+      icon: <ComputerDesktopIcon className="w-8 h-8 text-blue-500" />,
       title: "نرم‌افزارهای عمومی",
       skills: [
         { name: "Word", level: 90 },
         { name: "Excel", level: 85 },
         { name: "PowerPoint", level: 80 },
+        { name: "Photoshop", level: 70 },
       ],
     },
     {
-      icon: <CodeBracketIcon className="w-7 h-7" style={{ color: "#3b82f6" }} />, // blue-500
+      icon: <CodeBracketIcon className="w-8 h-8 text-indigo-500" />,
       title: "برنامه‌نویسی",
       skills: [
         { name: "JavaScript", level: 80 },
         { name: "React", level: 75 },
+        { name: "TypeScript", level: 70 },
+        { name: "HTML/CSS", level: 85 },
       ],
     },
   ];
 
+  const additionalSkills = [
+    "BIM Modeling",
+    "Structural Design",
+    "MEP Design",
+    "Project Management",
+    "Team Collaboration",
+    "Problem Solving",
+    "Documentation",
+    "Quality Control",
+  ];
+
   return (
-    <section
-      id="skills"
-      className="section-padding"
-      dir="rtl"
-      style={{
-        background: "linear-gradient(to bottom right, #f8fafc, #ffffff)", // from-gray-50 to-white
-        fontFamily: "Vazir, Arial, sans-serif", // Consistent font
-      }}
-    >
+    <section id="skills" className="py-20 bg-gradient-to-br from-slate-900 to-slate-800 text-white" dir="rtl">
       <div className="container mx-auto px-4">
-        {/* Section Header - Styled like other sections */}
         <div className="text-center mb-16">
-          <h2
-            className="flex items-center justify-center gap-2 text-3xl font-extrabold"
-            style={{ color: primaryTextColor }}
-          >
-            <CogIcon className="w-8 h-8" style={{ color: secondaryColor }} />
+          <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400 mb-4">
             مهارت‌ها
           </h2>
-          {/* Divider */}
-          <div
-            className="w-24 h-1 my-4 mx-auto rounded-full"
-            style={{ backgroundColor: secondaryColor }}
-          ></div>
-          <p
-            className="text-xl font-medium"
-            style={{ color: mutedTextColor }}
-          >
-            مهارت‌های تخصصی و نرم‌افزارهای مورد استفاده
+          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+            مهارت‌های تخصصی و نرم‌افزارهای مورد استفاده در پروژه‌های حرفه‌ای
           </p>
         </div>
 
-        {/* Skill Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {skillCategories.map((cat, idx) => (
-            <div
-              key={cat.title}
-              className="p-8 rounded-2xl transition-all duration-300 hover:shadow-xl flex flex-col gap-6"
-              style={{
-                backgroundColor: "rgba(255, 255, 255, 0.8)", // Card background
-                backdropFilter: "blur(10px)",
-                border: `1.5px solid ${lightBorderColor}`,
-                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-              }}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {skillCategories.map((category, index) => (
+            <div 
+              key={index}
+              className="bg-slate-800/50 backdrop-blur-sm p-7 rounded-2xl border border-slate-700/50 shadow-xl hover:border-cyan-500/30 transition-all duration-500 hover:-translate-y-2"
             >
-              <div className="flex items-center gap-3 mb-2">
-                {cat.icon}
-                <h3
-                  className="text-lg font-bold"
-                  style={{ color: primaryTextColor }}
-                >
-                  {cat.title}
-                </h3>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-slate-700/50">
+                  {category.icon}
+                </div>
+                <h3 className="text-xl font-bold">{category.title}</h3>
               </div>
-              <div className="flex flex-col gap-4">
-                {cat.skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between items-center mb-1">
-                      <span
-                        className="font-semibold"
-                        style={{ color: primaryTextColor }}
-                      >
-                        {skill.name}
-                      </span>
-                      <span
-                        className="text-sm font-bold"
-                        style={{ color: secondaryColor }}
-                      >
+              
+              <div className="space-y-5">
+                {category.skills.map((skill, skillIndex) => (
+                  <div key={skillIndex}>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="font-medium">{skill.name}</span>
+                      <span className="text-sm font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                         {skill.level}%
                       </span>
                     </div>
-                    {/* Progress Bar - Styled consistently */}
-                    <div
-                      className="w-full rounded-full h-3"
-                      style={{ backgroundColor: lightGrayColor }}
-                    >
-                      <div
-                        className="h-3 rounded-full transition-all duration-700"
-                        style={{
-                          width: `${skill.level}%`,
-                          background: `linear-gradient(to left, ${secondaryColor}, #60a5fa)`, // from-secondary to-blue-400
-                        }}
-                      />
+                    <div className="w-full bg-slate-700 rounded-full h-2.5">
+                      <div 
+                        className="h-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-1000 ease-out"
+                        style={{ width: `${skill.level}%` }}
+                      ></div>
                     </div>
                   </div>
                 ))}
@@ -137,56 +96,18 @@ export default function Skills() {
         </div>
 
         {/* Additional Skills */}
-        <div className="mt-16">
-          {/* Card - Styled like other cards */}
-          <div
-            className="p-8 rounded-2xl"
-            style={{
-              backgroundColor: "rgba(255, 255, 255, 0.8)",
-              backdropFilter: "blur(10px)",
-              border: `1.5px solid ${lightBorderColor}`,
-              boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-            }}
-          >
-            <h3
-              className="text-xl font-bold mb-8 text-center"
-              style={{ color: primaryTextColor }}
-            >
+        <div className="mt-16 max-w-4xl mx-auto">
+          <div className="bg-slate-800/50 backdrop-blur-sm p-7 rounded-2xl border border-slate-700/50 shadow-xl">
+            <h3 className="text-2xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400">
               سایر مهارت‌ها
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                "BIM Modeling",
-                "Structural Design",
-                "MEP Design",
-                "Project Management",
-                "Team Collaboration",
-                "Problem Solving",
-                "Documentation",
-                "Quality Control",
-              ].map((skill, index) => (
-                <div
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {additionalSkills.map((skill, index) => (
+                <div 
                   key={index}
-                  className="text-center p-4 rounded-xl transition-all duration-300"
-                  style={{
-                    background: `linear-gradient(to bottom right, rgba(59, 130, 246, 0.05), rgba(100, 116, 139, 0.05))`, // from-secondary/5 to-accent/5
-                    border: `1px solid ${lightBorderColor}`, // border-border
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = `linear-gradient(to bottom right, rgba(59, 130, 246, 0.1), rgba(100, 116, 139, 0.1))`; // hover:from-secondary/10 hover:to-accent/10
-                    e.currentTarget.style.borderColor = `rgba(59, 130, 246, 0.3)`; // hover:border-secondary/30
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = `linear-gradient(to bottom right, rgba(59, 130, 246, 0.05), rgba(100, 116, 139, 0.05))`;
-                    e.currentTarget.style.borderColor = lightBorderColor;
-                  }}
+                  className="py-3 px-4 text-center rounded-xl bg-slate-700/30 hover:bg-slate-700/50 border border-slate-600/30 hover:border-cyan-500/30 transition-all duration-300 hover:-translate-y-1"
                 >
-                  <span
-                    className="font-medium text-sm"
-                    style={{ color: primaryTextColor }}
-                  >
-                    {skill}
-                  </span>
+                  <span className="text-sm font-medium">{skill}</span>
                 </div>
               ))}
             </div>

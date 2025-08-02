@@ -44,14 +44,14 @@ export default function Home() {
     <>
       <Header />
       <Hero />
-      <About />
+      {/* <About /> */}
       <Resume />
       <Skills />
+      <RevitPortfolioGallery />
       <Contact />
       <Footer />
       <PDFContent />
       <PDFLoaderOverlay isVisible={showLoader} />
-      <RevitPortfolioGallery />
     </>
   );
 }
