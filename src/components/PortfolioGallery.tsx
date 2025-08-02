@@ -249,7 +249,7 @@ const RevitPortfolioGallery = () => {
               </h3>
               <button
                 onClick={closeModal}
-                className="bg-slate-100 hover:bg-slate-200 rounded-full p-2 transition-colors"
+                className="bg-slate-100 rounded-full p-2 transition-colors hover:bg-red-700"
                 aria-label="بستن"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -274,7 +274,7 @@ const RevitPortfolioGallery = () => {
                         {currentImageIndex > 0 && (
                           <button
                             onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(currentImageIndex - 1); }}
-                            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-md transition-all"
+                            className="absolute left-4 top-1/2 transform -translate-y-1/2 cursor-pointer bg-white/80 hover:bg-white p-3 rounded-full shadow-md transition-all"
                             aria-label="تصویر قبلی"
                           >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -286,7 +286,7 @@ const RevitPortfolioGallery = () => {
                         {currentImageIndex < selectedProject.sheetImages.length - 1 && (
                           <button
                             onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(currentImageIndex + 1); }}
-                            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-md transition-all"
+                            className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer bg-white/80 hover:bg-white p-3 rounded-full shadow-md transition-all"
                             aria-label="تصویر بعدی"
                           >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
