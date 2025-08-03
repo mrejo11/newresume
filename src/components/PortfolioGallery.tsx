@@ -52,7 +52,7 @@ const RevitPortfolioGallery = () => {
       title: 'طرح تأسیسات مکانیکی ساختمان',
       description: 'مدل‌سازی و طراحی تأسیسات مکانیکی یک ساختمان اداری 8 طبقه',
       // توجه: مسیر /public/ معمولاً در URL نیاز نیست. اگر فایل در public/mechimg باشد، URL باید /mechimg/... باشد.
-      sheetImages: ['/mechimg/mechanicalRoom.jpg', '/mechimg/Boiler Room.jpg', '/mechimg/Boiler Room۰۹.jpg','/mechimg/Boiler Room Walkthrough 2.mp4'], 
+      sheetImages: ['/mechimg/mechanicalRoom.jpg', '/mechimg/boster.low.jpg', '/mechimg/Boiler Room۰۹.low.jpg','/mechimg/Boiler Room Walkthrough 2.mp4'], 
       projectType: 'تاسیسات مکانیکی',
       area: '2500 مترمربع',
       floors: 8,
