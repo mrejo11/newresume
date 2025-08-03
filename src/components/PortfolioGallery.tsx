@@ -35,7 +35,7 @@ const RevitPortfolioGallery = () => {
       id: 1,
       title: 'جزئیات اتصال چهارراه ستون',
       description: 'جزئیات اجرایی اتصال چهارراه ستون در ساختمان اداری',
-      sheetImages: ['/jl۴k.jpg', '/BADBAND.jpg', '/jlk.jpg', '/jhko.jpg'],
+      sheetImages: ['/jl۴k.jpg', '/BADBAND.LOW.jpg', '/jlk.jpg', '/jhko.jpg'],
       projectType: 'جزئیات سازه',
       area: '-',
       floors: 10,
