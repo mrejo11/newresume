@@ -1,11 +1,10 @@
-// components/PortfolioGallery.tsx
 import React, { useState, useEffect } from 'react';
 
 interface RevitProject {
   id: number;
   title: string;
   description: string;
-  sheetImages: string[];
+  sheetImages: string[]; // می‌تواند شامل مسیرهای تصاویر یا ویدیوها باشد
   projectType: string;
   area: string;
   floors: number;
@@ -18,13 +17,19 @@ interface RevitProject {
   };
 }
 
+// تابع کمکی برای تشخیص نوع فایل
+const isVideoFile = (filename: string): boolean => {
+  const videoExtensions = ['.mp4', '.avi', '.mov', '.wmv', '.flv', '.webm', '.mkv'];
+  const lowerCaseFilename = filename.toLowerCase();
+  return videoExtensions.some(ext => lowerCaseFilename.endsWith(ext));
+};
+
 const RevitPortfolioGallery = () => {
   const [selectedProject, setSelectedProject] = useState<RevitProject | null>(null);
   const [filter, setFilter] = useState<string>('all');
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
   const [zoomedImage, setZoomedImage] = useState<string>('');
-
   const projects: RevitProject[] = [
     {
       id: 1,
@@ -34,7 +39,7 @@ const RevitPortfolioGallery = () => {
       projectType: 'جزئیات سازه',
       area: '-',
       floors: 10,
-      software: ['Revit Structure', 'ETABS'],
+      software: ['Revit Structure'],
       projectDetails: {
         client: '-',
         location: 'تهران',
@@ -46,13 +51,14 @@ const RevitPortfolioGallery = () => {
       id: 2,
       title: 'طرح تأسیسات مکانیکی ساختمان',
       description: 'مدل‌سازی و طراحی تأسیسات مکانیکی یک ساختمان اداری 8 طبقه',
-      sheetImages: ['/mep1.jpg', '/mep2.jpg', '/mep3.jpg'],
+      // توجه: مسیر /public/ معمولاً در URL نیاز نیست. اگر فایل در public/mechimg باشد، URL باید /mechimg/... باشد.
+      sheetImages: ['/mechimg/mechanicalRoom.jpg', '/mechimg/Boiler Room.jpg', '/mechimg/Boiler Room۰۹.jpg','/mechimg/Boiler Room Walkthrough 2.mp4'], 
       projectType: 'تاسیسات مکانیکی',
       area: '2500 مترمربع',
       floors: 8,
       software: ['Revit MEP', 'AutoCAD'],
       projectDetails: {
-        client: 'شرکت پویا سازان',
+        client: '-',
         location: 'تهران',
         year: '1401',
         status: 'تکمیل شده'
@@ -66,7 +72,7 @@ const RevitPortfolioGallery = () => {
       projectType: 'پارکینگ',
       area: '3200 مترمربع',
       floors: 4,
-      software: ['Revit Structure', 'ETABS', 'SAP2000'],
+      software: ['Revit Structure'],
       projectDetails: {
         client: 'مجتمع مسکونی آرین',
         location: 'کرج',
@@ -77,7 +83,6 @@ const RevitPortfolioGallery = () => {
   ];
 
   const projectTypes = ['all', 'جزئیات سازه', 'تاسیسات مکانیکی', 'پارکینگ'];
-
   const filteredProjects = filter === 'all' 
     ? projects 
     : projects.filter(project => project.projectType === filter);
@@ -106,7 +111,8 @@ const RevitPortfolioGallery = () => {
   const handleDownload = () => {
     if (selectedProject) {
       const imageUrl = selectedProject.sheetImages[0];
-      const filename = imageUrl.split('/').pop() || 'download.jpg';
+      // استخراج نام فایل از مسیر
+      const filename = imageUrl.split('/').pop() || 'download';
       downloadImage(imageUrl, filename);
     }
   };
@@ -130,7 +136,6 @@ const RevitPortfolioGallery = () => {
         }
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isZoomed, selectedProject]);
@@ -146,7 +151,6 @@ const RevitPortfolioGallery = () => {
             مجموعه‌ای از پروژه‌های طراحی سازه‌ای و مدل‌سازی BIM انجام شده با نرم‌افزارهای تخصصی
           </p>
         </div>
-
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {projectTypes.map((type) => (
             <button
@@ -162,7 +166,6 @@ const RevitPortfolioGallery = () => {
             </button>
           ))}
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
             <div
@@ -171,11 +174,25 @@ const RevitPortfolioGallery = () => {
               onClick={() => setSelectedProject(project)}
             >
               <div className="relative overflow-hidden">
-                <img
-                  src={project.sheetImages[0]}
-                  alt={project.title}
-                  className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+                {/* نمایش تصویر یا آیکون ویدیو در کارت اصلی */}
+                {isVideoFile(project.sheetImages[0]) ? (
+                  <div className="relative w-full h-56 bg-slate-200 flex items-center justify-center">
+                    <div className="bg-black text-white p-2 rounded">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    {/* می‌توانید یک تصویر پیش‌نمایش استاتیک هم بگذارید */}
+                    {/* <img src="/path/to/video-thumbnail.jpg" alt="Video Thumbnail" className="w-full h-full object-cover" /> */}
+                  </div>
+                ) : (
+                  <img
+                    src={project.sheetImages[0]}
+                    alt={project.title}
+                    className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                )}
                 <div className="absolute top-4 right-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
                   {project.projectType}
                 </div>
@@ -185,7 +202,6 @@ const RevitPortfolioGallery = () => {
                   </div>
                 </div>
               </div>
-              
               <div className="p-6">
                 <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-cyan-600 transition-colors">
                   {project.title}
@@ -193,7 +209,6 @@ const RevitPortfolioGallery = () => {
                 <p className="text-slate-600 text-sm mb-4 line-clamp-2 h-12">
                   {project.description}
                 </p>
-                
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <div className="bg-cyan-50 p-3 rounded-lg">
                     <p className="text-xs text-slate-500">متراژ</p>
@@ -204,7 +219,6 @@ const RevitPortfolioGallery = () => {
                     <p className="font-semibold text-slate-800">{project.floors} طبقه</p>
                   </div>
                 </div>
-                
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.software.slice(0, 2).map((sw, index) => (
                     <span
@@ -220,7 +234,6 @@ const RevitPortfolioGallery = () => {
                     </span>
                   )}
                 </div>
-                
                 <div className="flex items-center justify-between">
                   <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                     project.projectDetails.status === 'تکمیل شده' 
@@ -238,7 +251,6 @@ const RevitPortfolioGallery = () => {
           ))}
         </div>
       </div>
-
       {/* Project Detail Modal */}
       {selectedProject && (
         <div className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 z-50">
@@ -249,7 +261,7 @@ const RevitPortfolioGallery = () => {
               </h3>
               <button
                 onClick={closeModal}
-                className="bg-slate-100 rounded-full p-2 transition-colors hover:bg-red-700"
+                className="bg-red-500 rounded-full p-2 transition-colors hover:bg-red-700"
                 aria-label="بستن"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -257,24 +269,37 @@ const RevitPortfolioGallery = () => {
                 </svg>
               </button>
             </div>
-            
             <div className="p-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div>
                   <div className="relative bg-slate-100 rounded-2xl overflow-hidden mb-4">
-                    <img
-                      src={selectedProject.sheetImages[currentImageIndex]}
-                      alt={`${selectedProject.title} - تصویر ${currentImageIndex + 1}`}
-                      className="w-full h-auto object-contain cursor-pointer"
-                      onClick={() => openZoomedImage(selectedProject.sheetImages[currentImageIndex])}
-                    />
-                    
+                    {/* نمایش تصویر یا ویدیو در مودال */}
+                    {isVideoFile(selectedProject.sheetImages[currentImageIndex]) ? (
+                      // نمایش ویدیو
+                      <video
+                        src={selectedProject.sheetImages[currentImageIndex]}
+                        controls // نمایش کنترل‌های پخش
+                        className="w-full h-auto max-h-[70vh] object-contain"
+                        // onClick={() => openZoomedImage(selectedProject.sheetImages[currentImageIndex])} // این برای ویدیو منطقی نیست
+                      >
+                        مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند.
+                      </video>
+                    ) : (
+                      // نمایش تصویر
+                      <img
+                        src={selectedProject.sheetImages[currentImageIndex]}
+                        alt={`${selectedProject.title} - تصویر ${currentImageIndex + 1}`}
+                        className="w-full h-auto max-h-[70vh] object-contain cursor-pointer"
+                        onClick={() => openZoomedImage(selectedProject.sheetImages[currentImageIndex])}
+                      />
+                    )}
+
                     {selectedProject.sheetImages.length > 1 && (
                       <>
                         {currentImageIndex > 0 && (
                           <button
                             onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(currentImageIndex - 1); }}
-                            className="absolute left-4 top-1/2 transform -translate-y-1/2 cursor-pointer bg-white/80 hover:bg-white p-3 rounded-full shadow-md transition-all"
+                            className="absolute left-4 top-1/2 transform -translate-y-1/2 cursor-pointer bg-gray-400 hover:bg-white p-3 rounded-full shadow-md transition-all"
                             aria-label="تصویر قبلی"
                           >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -282,11 +307,10 @@ const RevitPortfolioGallery = () => {
                             </svg>
                           </button>
                         )}
-                        
                         {currentImageIndex < selectedProject.sheetImages.length - 1 && (
                           <button
                             onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(currentImageIndex + 1); }}
-                            className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer bg-white/80 hover:bg-white p-3 rounded-full shadow-md transition-all"
+                            className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer bg-gray-400 hover:bg-white p-3 rounded-full shadow-md transition-all"
                             aria-label="تصویر بعدی"
                           >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -294,23 +318,21 @@ const RevitPortfolioGallery = () => {
                             </svg>
                           </button>
                         )}
-                        
                         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-                          {selectedProject.sheetImages.map((_, index) => (
+                          {selectedProject.sheetImages.map((item, index) => (
                             <div
                               key={index}
                               className={`w-3 h-3 rounded-full cursor-pointer ${
                                 index === currentImageIndex ? 'bg-cyan-500' : 'bg-white/50'
                               }`}
                               onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(index); }}
-                              aria-label={`رفتن به تصویر ${index + 1}`}
+                              aria-label={`رفتن به ${isVideoFile(item) ? 'ویدیو' : 'تصویر'} ${index + 1}`}
                             />
                           ))}
                         </div>
                       </>
                     )}
                   </div>
-                  
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.software.map((sw, index) => (
                       <span
@@ -322,12 +344,10 @@ const RevitPortfolioGallery = () => {
                     ))}
                   </div>
                 </div>
-                
                 <div>
                   <p className="text-slate-700 mb-6 leading-relaxed">
                     {selectedProject.description}
                   </p>
-                  
                   <div className="space-y-4 mb-6">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-cyan-50 p-4 rounded-xl">
@@ -347,7 +367,6 @@ const RevitPortfolioGallery = () => {
                         <p className="font-semibold">{selectedProject.projectDetails.year}</p>
                       </div>
                     </div>
-                    
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-cyan-50 p-4 rounded-xl">
                         <p className="text-sm text-slate-500">مشتری</p>
@@ -358,7 +377,6 @@ const RevitPortfolioGallery = () => {
                         <p className="font-semibold">{selectedProject.projectDetails.location}</p>
                       </div>
                     </div>
-                    
                     <div className="bg-cyan-50 p-4 rounded-xl">
                       <p className="text-sm text-slate-500">وضعیت</p>
                       <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
@@ -370,7 +388,6 @@ const RevitPortfolioGallery = () => {
                       </span>
                     </div>
                   </div>
-                  
                   <div className="flex gap-3">
                     <button 
                       onClick={handleDownload}
@@ -379,7 +396,7 @@ const RevitPortfolioGallery = () => {
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
-                      دریافت نقشه‌ها (تصویر)
+                      دریافت نقشه‌ها ({isVideoFile(selectedProject.sheetImages[0]) ? 'ویدیو' : 'تصویر'})
                     </button>
                     <button className="flex-1 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-900 hover:to-black text-white py-3.5 px-6 rounded-xl font-medium transition-all shadow-lg hover:shadow-slate-500/30">
                       تماس برای مشاوره
@@ -391,8 +408,7 @@ const RevitPortfolioGallery = () => {
           </div>
         </div>
       )}
-
-      {/* Image Zoom Modal */}
+      {/* Image Zoom Modal - فقط برای تصاویر */}
       {isZoomed && (
         <div 
           className="fixed inset-0 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 z-50 cursor-zoom-out"
