@@ -82,7 +82,7 @@ const RevitPortfolioGallery = () => {
       title: ' سازه اسکلت بتنی',
       description: 'طراحی سازه  4 طبقه     ',
       sheetImages: [
-        '/conceretimg/Project1.jpg',
+        '/conceretimg/3d columnRebar.jpg',
         '/conceretimg/beamplan.jpg',
         '/conceretimg/3DSTAIR.jpg'
       ],
