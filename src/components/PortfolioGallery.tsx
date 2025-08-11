@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-// تعریف تایپ جدید برای مدیریت تصاویر کم‌حجم و با کیفیت
-interface MediaItem {
-  lowRes: string;  // مسیر تصویر کم‌حجم برای نمایش در صفحه
-  highRes: string; // مسیر تصویر با کیفیت اصلی برای دانلود
-}
-
 interface RevitProject {
   id: number;
   title: string;
   description: string;
-  // sheetImages: string[]; // قبلی
-  sheetImages: MediaItem[]; // جدید
+  sheetImages: string[]; // Simplified to direct image paths
   projectType: string;
   area: string;
   floors: number;
@@ -38,17 +31,18 @@ const RevitPortfolioGallery = () => {
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
   const [zoomedImage, setZoomedImage] = useState<string>('');
 
-  // داده‌های پروژه‌ها با ساختار جدید
+  // داده‌های پروژه‌ها با ساختار ساده شده
   const projects: RevitProject[] = [
     {
       id: 1,
-      title: 'جزئیات اتصال چهارراه ستون',
-      description: 'جزئیات اجرایی اتصال چهارراه ستون در ساختمان اداری',
+      title: '   مدلسازی سازه ساختمان اسکلت فلزی',
+      description: 'جزئیات اجرایی  ساختمان اداری',
       sheetImages: [
-        { lowRes: '/jl۴k_low.jpg', highRes: '/jl۴k.jpg' },
-        { lowRes: '/BADBAND_low.jpg', highRes: '/BADBAND.jpg' },
-        { lowRes: '/jlk_low.jpg', highRes: '/jlk.jpg' },
-        { lowRes: '/jhko_low.jpg', highRes: '/jhko.jpg' }
+        '/structurimg/stairs2.jpg',
+        '/structurimg/stairs1.jpg',
+        '/structurimg/jhko.jpg',
+        '/structurimg/jl۴k.jpg',
+        '/structurimg/BADBAND.jpg',
       ],
       projectType: 'جزئیات سازه',
       area: '-',
@@ -64,13 +58,13 @@ const RevitPortfolioGallery = () => {
     {
       id: 2,
       title: 'طرح تأسیسات مکانیکی ساختمان',
-      description: 'مدل‌سازی و طراحی تأسیسات مکانیکی یک ساختمان اداری 8 طبقه',
+      description: 'مدل‌سازی و طراحی موتورخانه یک ساختمان اداری 8 طبقه',
       sheetImages: [
-        { lowRes: '/mechimg/Boiler Room.low.jpg', highRes: '/mechimg/mechanicalRoom.jpg' },
-        { lowRes: '/mechimg/boster.low.jpg', highRes: '/mechimg/Boiler Room.jpg' },
-        { lowRes: '/mechimg/Boiler Room۰۹.low.jpg', highRes: '/mechimg/Boiler Room۰۹.jpg' },
-        // برای ویدیوها می‌توانید lowRes و highRes یکسان باشد یا فقط highRes وجود داشته باشد
-        { lowRes: 'mechimg/Boiler Room Walkthrough 2.mp4', highRes: '/mechimg/Boiler Room Walkthrough 2.mp4' }
+        '/mechimg/mechanicalRoom.jpg',
+        '/mechimg/Boiler Room.jpg',
+        '/mechimg/Boiler Room۰۹.jpg',
+        // برای ویدیوها
+        '/mechimg/Boiler Room Walkthrough 2.mp4'
       ],
       projectType: 'تاسیسات مکانیکی',
       area: '2500 مترمربع',
@@ -85,19 +79,20 @@ const RevitPortfolioGallery = () => {
     },
     {
       id: 3,
-      title: 'پارکینگ زیرزمینی',
-      description: 'طراحی سازه پارکینگ 4 طبقه با سیستم قاب خمشی فولادی',
+      title: ' سازه اسکلت بتنی',
+      description: 'طراحی سازه  4 طبقه     ',
       sheetImages: [
-        { lowRes: '/parking1_low.jpg', highRes: '/parking1.jpg' },
-        { lowRes: '/parking2_low.jpg', highRes: '/parking2.jpg' }
+        '/conceretimg/Project1.jpg',
+        '/conceretimg/beamplan.jpg',
+        '/conceretimg/3DSTAIR.jpg'
       ],
-      projectType: 'پارکینگ',
+      projectType: 'سازه بتنی',
       area: '3200 مترمربع',
       floors: 4,
       software: ['Revit Structure'],
       projectDetails: {
-        client: 'مجتمع مسکونی آرین',
-        location: 'کرج',
+        client: '-',
+        location: '-',
         year: '1400',
         status: 'تکمیل شده'
       }
@@ -131,10 +126,9 @@ const RevitPortfolioGallery = () => {
     document.body.removeChild(link);
   };
 
-  const handleDownload = () => {
+   const handleDownload = () => {
     if (selectedProject) {
-      // const imageUrl = selectedProject.sheetImages[0]; // قبلی
-      const imageUrl = selectedProject.sheetImages[0].highRes; // جدید - استفاده از تصویر با کیفیت اصلی
+      const imageUrl = selectedProject.sheetImages[currentImageIndex];
       // استخراج نام فایل از مسیر
       const filename = imageUrl.split('/').pop() || 'download';
       downloadImage(imageUrl, filename);
@@ -198,8 +192,8 @@ const RevitPortfolioGallery = () => {
               onClick={() => setSelectedProject(project)}
             >
               <div className="relative overflow-hidden">
-                {/* نمایش تصویر یا آیکون ویدیو در کارت اصلی - استفاده از lowRes */}
-                {isVideoFile(project.sheetImages[0].lowRes) ? (
+                {/* نمایش تصویر یا آیکون ویدیو در کارت اصلی */}
+                {isVideoFile(project.sheetImages[0]) ? (
                   <div className="relative w-full h-56 bg-slate-200 flex items-center justify-center">
                     <div className="bg-black text-white p-2 rounded">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -210,8 +204,7 @@ const RevitPortfolioGallery = () => {
                   </div>
                 ) : (
                   <img
-                    // src={project.sheetImages[0]} // قبلی
-                    src={project.sheetImages[0].lowRes} // جدید - استفاده از تصویر کم‌حجم
+                    src={project.sheetImages[0]}
                     alt={project.title}
                     className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110"
                   />
@@ -238,7 +231,7 @@ const RevitPortfolioGallery = () => {
                     <p className="font-semibold text-slate-800">{project.area}</p>
                   </div>
                   <div className="bg-cyan-50 p-3 rounded-lg">
-                    <p className="text-xs text-slate-500">تعداد طبقات</p>
+                    <p className="text-xs text-slate-800">تعداد طبقات</p>
                     <p className="font-semibold text-slate-800">{project.floors} طبقه</p>
                   </div>
                 </div>
@@ -297,12 +290,11 @@ const RevitPortfolioGallery = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div>
                   <div className="relative bg-slate-100 rounded-2xl overflow-hidden mb-4">
-                    {/* نمایش تصویر یا ویدیو در مودال - استفاده از lowRes */}
-                    {isVideoFile(selectedProject.sheetImages[currentImageIndex].lowRes) ? (
+                    {/* نمایش تصویر یا ویدیو در مودال */}
+                    {isVideoFile(selectedProject.sheetImages[currentImageIndex]) ? (
                       // نمایش ویدیو
                       <video
-                        // src={selectedProject.sheetImages[currentImageIndex]} // قبلی
-                        src={selectedProject.sheetImages[currentImageIndex].lowRes} // جدید - استفاده از lowRes برای نمایش در مودال
+                        src={selectedProject.sheetImages[currentImageIndex]}
                         controls
                         className="w-full h-auto max-h-[70vh] object-contain"
                       >
@@ -311,11 +303,10 @@ const RevitPortfolioGallery = () => {
                     ) : (
                       // نمایش تصویر
                       <img
-                        // src={selectedProject.sheetImages[currentImageIndex]} // قبلی
-                        src={selectedProject.sheetImages[currentImageIndex].lowRes} // جدید - استفاده از lowRes برای نمایش در مودال
+                        src={selectedProject.sheetImages[currentImageIndex]}
                         alt={`${selectedProject.title} - تصویر ${currentImageIndex + 1}`}
                         className="w-full h-auto max-h-[70vh] object-contain cursor-pointer"
-                        onClick={() => openZoomedImage(selectedProject.sheetImages[currentImageIndex].lowRes)} // استفاده از lowRes برای زوم
+                        onClick={() => openZoomedImage(selectedProject.sheetImages[currentImageIndex])}
                       />
                     )}
                     {selectedProject.sheetImages.length > 1 && (
@@ -350,7 +341,7 @@ const RevitPortfolioGallery = () => {
                                 index === currentImageIndex ? 'bg-cyan-500' : 'bg-white/50'
                               }`}
                               onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(index); }}
-                              aria-label={`رفتن به ${isVideoFile(item.lowRes) ? 'ویدیو' : 'تصویر'} ${index + 1}`} // استفاده از lowRes برای تشخیص نوع
+                              aria-label={`رفتن به ${isVideoFile(item) ? 'ویدیو' : 'تصویر'} ${index + 1}`}
                             />
                           ))}
                         </div>
@@ -375,30 +366,30 @@ const RevitPortfolioGallery = () => {
                   <div className="space-y-4 mb-6">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-cyan-50 p-4 rounded-xl">
-                        <p className="text-sm text-slate-500">نوع پروژه</p>
-                        <p className="font-semibold">{selectedProject.projectType}</p>
+                        <p className="text-sm text-slate-800">نوع پروژه</p>
+                        <p className="font-semibold text-slate-800">{selectedProject.projectType}</p>
                       </div>
                       <div className="bg-cyan-50 p-4 rounded-xl">
                         <p className="text-sm text-slate-500">متراژ</p>
-                        <p className="font-semibold">{selectedProject.area}</p>
+                        <p className="font-semibold text-slate-800">{selectedProject.area}</p>
                       </div>
                       <div className="bg-cyan-50 p-4 rounded-xl">
-                        <p className="text-sm text-slate-500">تعداد طبقات</p>
-                        <p className="font-semibold">{selectedProject.floors} طبقه</p>
+                        <p className="text-sm text-slate-800">تعداد طبقات</p>
+                        <p className="font-semibold text-slate-800">{selectedProject.floors} طبقه</p>
                       </div>
                       <div className="bg-cyan-50 p-4 rounded-xl">
                         <p className="text-sm text-slate-500">سال اجرا</p>
-                        <p className="font-semibold">{selectedProject.projectDetails.year}</p>
+                        <p className="font-semibold text-slate-800">{selectedProject.projectDetails.year}</p>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-cyan-50 p-4 rounded-xl">
                         <p className="text-sm text-slate-500">مشتری</p>
-                        <p className="font-semibold">{selectedProject.projectDetails.client}</p>
+                        <p className="font-semibold text-slate-800">{selectedProject.projectDetails.client}</p>
                       </div>
                       <div className="bg-cyan-50 p-4 rounded-xl">
-                        <p className="text-sm text-slate-500">محل پروژه</p>
-                        <p className="font-semibold">{selectedProject.projectDetails.location}</p>
+                        <p className="text-sm text-slate-800">محل پروژه</p>
+                        <p className="font-semibold text-slate-800">{selectedProject.projectDetails.location}</p>
                       </div>
                     </div>
                     <div className="bg-cyan-50 p-4 rounded-xl">
@@ -420,7 +411,7 @@ const RevitPortfolioGallery = () => {
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
-                      دریافت نقشه‌ها ({isVideoFile(selectedProject.sheetImages[0].lowRes) ? 'ویدیو' : 'تصویر'}) {/* استفاده از lowRes برای تشخیص نوع */}
+                      دریافت نقشه‌ها ({isVideoFile(selectedProject.sheetImages[0]) ? 'ویدیو' : 'تصویر'})
                     </button>
                     <button className="flex-1 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-900 hover:to-black text-white py-3.5 px-6 rounded-xl font-medium transition-all shadow-lg hover:shadow-slate-500/30">
                       تماس برای مشاوره
@@ -433,7 +424,7 @@ const RevitPortfolioGallery = () => {
         </div>
       )}
 
-      {/* Image Zoom Modal - فقط برای تصاویر - استفاده از lowRes برای زوم */}
+      {/* Image Zoom Modal */}
       {isZoomed && (
         <div
           className="fixed inset-0 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 z-50 cursor-zoom-out"
@@ -449,7 +440,7 @@ const RevitPortfolioGallery = () => {
             </svg>
           </button>
           <img
-            src={zoomedImage} // zoomedImage از lowRes پر می‌شود
+            src={zoomedImage}
             alt="بزرگ‌نمایی"
             className="max-h-[90vh] max-w-[90vw] object-contain rounded-xl"
             onClick={(e) => e.stopPropagation()}
