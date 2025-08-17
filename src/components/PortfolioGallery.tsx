@@ -30,6 +30,7 @@ const RevitPortfolioGallery = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
   const [zoomedImage, setZoomedImage] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // داده‌های پروژه‌ها با ساختار ساده شده
   const projects: RevitProject[] = [
@@ -128,6 +129,11 @@ const RevitPortfolioGallery = () => {
     document.body.removeChild(link);
   };
 
+  const handleImageNavigation = (newIndex: number) => {
+    setIsLoading(true);
+    setCurrentImageIndex(newIndex);
+  };
+
    const handleDownload = () => {
     if (selectedProject) {
       const imageUrl = selectedProject.sheetImages[currentImageIndex];
@@ -155,10 +161,23 @@ const RevitPortfolioGallery = () => {
           closeModal();
         }
       }
+      
+      // Handle arrow key navigation
+      if (selectedProject) {
+        if (event.key === 'ArrowRight') {
+          if (currentImageIndex < selectedProject.sheetImages.length - 1) {
+            handleImageNavigation(currentImageIndex + 1);
+          }
+        } else if (event.key === 'ArrowLeft') {
+          if (currentImageIndex > 0) {
+            handleImageNavigation(currentImageIndex - 1);
+          }
+        }
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isZoomed, selectedProject]);
+  }, [isZoomed, selectedProject, currentImageIndex]);
 
   return (
     <section id="portfolio" className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50" dir="rtl">
@@ -304,18 +323,27 @@ const RevitPortfolioGallery = () => {
                       </video>
                     ) : (
                       // نمایش تصویر
-                      <img
-                        src={selectedProject.sheetImages[currentImageIndex]}
-                        alt={`${selectedProject.title} - تصویر ${currentImageIndex + 1}`}
-                        className="w-full h-auto max-h-[70vh] object-contain cursor-pointer"
-                        onClick={() => openZoomedImage(selectedProject.sheetImages[currentImageIndex])}
-                      />
+                      <div className="relative w-full h-auto max-h-[70vh] flex items-center justify-center">
+                        {isLoading && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-slate-200 z-10 rounded-2xl">
+                            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-500"></div>
+                          </div>
+                        )}
+                        <img
+                          src={selectedProject.sheetImages[currentImageIndex]}
+                          alt={`${selectedProject.title} - تصویر ${currentImageIndex + 1}`}
+                          className="w-full h-auto max-h-[70vh] object-contain cursor-pointer"
+                          onClick={() => openZoomedImage(selectedProject.sheetImages[currentImageIndex])}
+                          onLoad={() => setIsLoading(false)}
+                          onError={() => setIsLoading(false)}
+                        />
+                      </div>
                     )}
                     {selectedProject.sheetImages.length > 1 && (
                       <>
                         {currentImageIndex > 0 && (
                           <button
-                            onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(currentImageIndex - 1); }}
+                            onClick={(e) => { e.stopPropagation(); handleImageNavigation(currentImageIndex - 1); }}
                             className="absolute left-4 top-1/2 transform -translate-y-1/2 cursor-pointer bg-gray-400 hover:bg-white p-3 rounded-full shadow-md transition-all"
                             aria-label="تصویر قبلی"
                           >
@@ -326,7 +354,7 @@ const RevitPortfolioGallery = () => {
                         )}
                         {currentImageIndex < selectedProject.sheetImages.length - 1 && (
                           <button
-                            onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(currentImageIndex + 1); }}
+                            onClick={(e) => { e.stopPropagation(); handleImageNavigation(currentImageIndex + 1); }}
                             className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer bg-gray-400 hover:bg-white p-3 rounded-full shadow-md transition-all"
                             aria-label="تصویر بعدی"
                           >
@@ -342,7 +370,7 @@ const RevitPortfolioGallery = () => {
                               className={`w-3 h-3 rounded-full cursor-pointer ${
                                 index === currentImageIndex ? 'bg-cyan-500' : 'bg-white/50'
                               }`}
-                              onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(index); }}
+                              onClick={(e) => { e.stopPropagation(); handleImageNavigation(index); }}
                               aria-label={`رفتن به ${isVideoFile(item) ? 'ویدیو' : 'تصویر'} ${index + 1}`}
                             />
                           ))}
