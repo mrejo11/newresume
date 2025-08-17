@@ -30,7 +30,7 @@ export default function About() {
                   </div>
                   <h3 className="text-2xl font-bold text-slate-800 mb-4">مهندس مکانیک</h3>
                   <p className="text-slate-600 mb-4 leading-relaxed">
-                    متخصص در طراحی سازه با Revit و علاقه‌مند به برنامه‌نویسی. با تجربه در مدل‌سازی BIM برای پروژه‌های ساختمانی و دارای گواهینامه‌های معتبر در زمینه نرم‌افزارهای تخصصی.
+                    متخصص در بیم مدلر  با Revit MEP و علاقه‌مند به برنامه‌نویسی. با تجربه در مدل‌سازی BIM برای پروژه‌های ساختمانی و دارای گواهینامه‌های معتبر در زمینه نرم‌افزارهای تخصصی.
                   </p>
                   <div className="grid grid-cols-2 gap-4 mt-6">
                     <div className="bg-cyan-50 p-4 rounded-xl">

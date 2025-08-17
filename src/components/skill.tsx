@@ -11,8 +11,8 @@ export default function Skills() {
       skills: [
         { name: "Revit", level: 90 },
         { name: "AutoCAD", level: 95 },
-        { name: "ETABS", level: 85 },
-        { name: "SAP2000", level: 80 },
+        { name: "MSP", level: 85 },
+        
       ],
     },
     {
@@ -22,7 +22,7 @@ export default function Skills() {
         { name: "Word", level: 90 },
         { name: "Excel", level: 85 },
         { name: "PowerPoint", level: 80 },
-        { name: "Photoshop", level: 70 },
+        
       ],
     },
     {
@@ -31,8 +31,8 @@ export default function Skills() {
       skills: [
         { name: "JavaScript", level: 80 },
         { name: "React", level: 75 },
-        { name: "TypeScript", level: 70 },
-        { name: "HTML/CSS", level: 85 },
+       
+        
       ],
     },
   ];

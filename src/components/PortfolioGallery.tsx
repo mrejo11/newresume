@@ -51,7 +51,7 @@ const RevitPortfolioGallery = () => {
       projectDetails: {
         client: '-',
         location: 'تهران',
-        year: '1402',
+        year: '1403',
         status: 'تکمیل شده'
       }
     },
@@ -84,7 +84,8 @@ const RevitPortfolioGallery = () => {
       sheetImages: [
         '/conceretimg/3d columnRebar.jpg',
         '/conceretimg/beamplan.jpg',
-        '/conceretimg/3DSTAIR.jpg'
+        '/conceretimg/3DSTAIR.jpg',
+        '/conceretimg/3dST.jpg'
       ],
       projectType: 'سازه بتنی',
       area: '3200 مترمربع',
@@ -93,7 +94,7 @@ const RevitPortfolioGallery = () => {
       projectDetails: {
         client: '-',
         location: '-',
-        year: '1400',
+        year: '1403',
         status: 'تکمیل شده'
       }
     }

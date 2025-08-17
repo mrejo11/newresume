@@ -49,7 +49,7 @@ export default function Hero() {
           {/* Subtitle */}
           <p className={`text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto font-medium transition-all duration-1000 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
             <span className="bg-clip-text text-transparent bg-gradient-to-l from-slate-700 to-slate-500">
-              مهندس مکانیک، طراح سازه و مدل‌ساز BIM با تخصص در Revit و
+              مهندس مکانیک، بیم مدلر BIM با تخصص در Revit MEP / Revit Structure و
               علاقه‌مند به برنامه‌نویسی و معماری مدرن
             </span>
           </p>
