@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/hero';
-import About from '../components/about';
+
 import Resume from '../components/resume';
 import Skills from '../components/skill';
 import Contact from '../components/contact';

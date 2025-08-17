@@ -43,6 +43,7 @@ const RevitPortfolioGallery = () => {
         '/structurimg/jhko.jpg',
         '/structurimg/jl۴k.jpg',
         '/structurimg/BADBAND.jpg',
+        '/structurimg/baseplate.jpg'
       ],
       projectType: 'جزئیات سازه',
       area: '-',

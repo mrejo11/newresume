@@ -56,15 +56,14 @@ export default function Resume() {
                   <div className="inline-block px-4 py-1 bg-cyan-900/30 text-cyan-400 rounded-full text-sm font-medium mb-4">
                     تجربه کاری
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">طراح سازه و مدل‌ساز BIM</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">تکنسین تعمیر و نگهداری تاسیسات</h3>
                   <h4 className="text-lg text-cyan-300 mb-3">شرکت رسام مدرن فرداد</h4>
                   <p className="text-slate-300 mb-4">
-                    طراحی سازه‌های ساختمانی و انجام محاسبات سازه‌ای با استفاده از
-                    نرم‌افزار Revit. مدل‌سازی BIM برای پروژه‌های ساختمانی.
+                    تعمیر و نگهداری تاسیسات ساختمانی شامل سیستم‌های برق، آب و گرمایش/سرمایش.
                   </p>
                   <span className="inline-flex items-center text-slate-400">
                     <span className="w-2 h-2 bg-cyan-400 rounded-full ml-2"></span>
-                    کنونی
+                    ۱۴۰۱ تا ۱۴۰۳
                   </span>
                 </div>
               </div>
@@ -76,6 +75,7 @@ export default function Resume() {
                 </div>
               </div>
             </div>
+
 
             {/* Certifications */}
             <div className="mb-12 flex flex-col md:flex-row-reverse items-center md:items-start">
