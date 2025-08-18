@@ -59,7 +59,7 @@ export default function Resume() {
                   <h3 className="text-2xl font-bold text-white mb-2">تکنسین تعمیر و نگهداری تاسیسات</h3>
                   <h4 className="text-lg text-cyan-300 mb-3">شرکت رسام مدرن فرداد</h4>
                   <p className="text-slate-300 mb-4">
-                    تعمیر و نگهداری تاسیسات ساختمانی شامل سیستم‌های برق، آب و گرمایش/سرمایش.
+                    تعمیر و نگهداری تاسیسات ساختمانی شامل سیستم‌های گرمایش و سرمایش.
                   </p>
                   <span className="inline-flex items-center text-slate-400">
                     <span className="w-2 h-2 bg-cyan-400 rounded-full ml-2"></span>

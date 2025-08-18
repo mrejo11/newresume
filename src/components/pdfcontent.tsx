@@ -160,13 +160,18 @@ export default function PDFContent() {
         <div style={{ paddingRight: '10px' }}>
           <div style={{ marginBottom: '10px' }}>
             <h4 style={{ margin: '5px 0', color: '#3498db', fontSize: '14px' }}>
-              طراح سازه و مدل‌ساز BIM
+              {/* طراح سازه و مدل‌ساز BIM */}
+              تکنسین تعمیر و نگهداری تاسیسات
+
             </h4>
             <p style={{ margin: '5px 0', fontSize: '13px', color: '#2c3e50' }}>
               <strong>شرکت رسام مدرن فرداد</strong>
             </p>
             <p style={{ margin: '8px 0 0', fontSize: '12px', color: '#555' }}>
-              طراحی سازه‌های ساختمانی و انجام محاسبات سازه‌ای با استفاده از نرم‌افزار Revit. مدل‌سازی BIM برای پروژه‌های ساختمانی.
+              {/* طراحی سازه‌های ساختمانی و انجام محاسبات سازه‌ای با استفاده از نرم‌افزار Revit. مدل‌سازی BIM برای پروژه‌های ساختمانی. */}
+              تعمیر و نگهداری تاسیسات ساختمانی شامل سیستم‌های گرمایش و سرمایش.
+
+
             </p>
           </div>
         </div>
