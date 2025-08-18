@@ -58,7 +58,7 @@ export default function PDFContent() {
           color: '#3498db', // آبی روشن (رنگ ثانویه)
           fontWeight: 'normal' 
         }}>
-          مهندس مکانیک | طراح سازه | مدل‌ساز BIM
+          مهندس مکانیک | مدل‌ساز BIM
         </h2>
         <hr style={{
           margin: '15px auto',
