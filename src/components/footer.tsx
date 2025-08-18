@@ -18,7 +18,7 @@ export default function Footer() {
               مهدی رضایی
             </h3>
             <p className="text-cyan-100 mb-4 text-lg">
-              مهندس مکانیک و طراح سازه
+            مهندس مکانیک   
             </p>
             <p className="text-cyan-200/80">
               متخصص در  مدلسازی با Revit و علاقه‌مند به برنامه‌نویسی
