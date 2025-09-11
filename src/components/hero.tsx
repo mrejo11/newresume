@@ -48,7 +48,7 @@ export default function Hero() {
                 : "opacity-0 translate-y-10"
             }`}
           >
-            <div className="relative">
+            <div className="relative md:pt-20">
               <div className="w-32 h-32 md:w-60 md:h-60 rounded-full overflow-hidden border-4 border-white/20 shadow-xl">
                 {/* Replace with your actual profile image */}
                 <img
@@ -85,7 +85,7 @@ export default function Hero() {
             }`}
           >
             <span className="bg-clip-text text-transparent bg-gradient-to-l from-slate-700 to-slate-500">
-              مهندس مکانیک، بیم مدلر BIM با تخصص در Revit MEP / Revit Structure
+              مهندس مکانیک، مدلر BIM با تخصص در Revit MEP / Revit Structure
               و علاقه‌مند به برنامه‌نویسی و معماری مدرن
             </span>
           </p>

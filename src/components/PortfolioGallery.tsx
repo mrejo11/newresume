@@ -99,10 +99,32 @@ const RevitPortfolioGallery = () => {
         year: '1403',
         status: 'تکمیل شده'
       }
-    }
+    },
+    // ... existing code ...
+        {
+          id: 4,
+          title: '    ساختمان مسکونی 5 طبقه ',
+          description: '    ساختمان مسکونی 5 طبقه ',
+          sheetImages: [
+            '/mortgageimg/mortgage.jpg',
+            '/mortgageimg/mortgage1.jpg',
+            '/mortgageimg/mortgage2.jpg',
+          ],
+          projectType: 'ساختمان مسکونی 5 طبقه بتنی',
+          area: '1500 مترمربع',
+          floors: 5,
+          software: ['Revit Architecture'],
+          projectDetails: {
+            client: '-',
+            location: 'تهران',
+            year: '1402',
+            status: 'تکمیل شده'
+          }
+        }
+    // ... existing code ...
   ];
 
-  const projectTypes = ['all', 'جزئیات سازه', 'تاسیسات مکانیکی', 'پارکینگ'];
+  const projectTypes = ['all', 'جزئیات سازه', 'تاسیسات مکانیکی', 'ساختمان مسکونی 5 طبقه بتنی'];
 
   const filteredProjects = filter === 'all'
     ? projects
