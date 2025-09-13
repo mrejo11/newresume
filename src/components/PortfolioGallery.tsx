@@ -106,7 +106,7 @@ const RevitPortfolioGallery = () => {
           title: '    ساختمان مسکونی 5 طبقه ',
           description: '    ساختمان مسکونی 5 طبقه ',
           sheetImages: [
-            '/mortgageimg/mortgage.jpg',
+            '/maskoni5tabage/showtime.jpg',
             '/mortgageimg/mortgage1.jpg',
             '/mortgageimg/mortgage2.jpg',
           ],

@@ -3,7 +3,10 @@ import "./globals.css";
 
 export const metadata = {
   title: "مهدی رضایی - مهندس مکانیک",
-  description: "رزومه مهدی رضایی - مهندس مکانیک و طراح سازه",
+  description: "رزومه مهدی رضایی - مهندس مکانیک ",
+  icons: {
+    icon: "/tablogo.png", // مسیر favicon
+  },
 };
 
 export default function RootLayout({

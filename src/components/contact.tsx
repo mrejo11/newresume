@@ -28,7 +28,7 @@ export default function Contact() {
                   { icon: MapPinIcon, text: "قائم‌شهر، مازندران", label: "آدرس" },
                   { icon: PhoneIcon, text: "09114940435", label: "تلفن" },
                   { icon: EnvelopeIcon, text: "mehdireko74@gmail.com", label: "ایمیل" },
-                  { icon: GlobeAltIcon, text: "ایرانی", label: "ملیت" },
+                  // { icon: GlobeAltIcon, text: "ایرانی", label: "ملیت" },
                 ].map((item, index) => (
                   <div key={index} className="flex items-start gap-4 group">
                     <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-slate-700/50 group-hover:bg-cyan-500/20 transition-colors">

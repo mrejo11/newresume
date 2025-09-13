@@ -81,11 +81,11 @@ export default function Resume() {
                   <h4 className="text-lg text-cyan-300 mb-3">
                     شرکت رسام مدرن فرداد
                   </h4>
-                  <p className="text-slate-300 mb-4">
+                  {/* < className="text-slate-300 mb-4">
                     طراحی سازه‌های ساختمانی و انجام محاسبات سازه‌ای با استفاده
                     از نرم‌افزار Revit. مدل‌سازی BIM برای پروژه‌های ساختمانی.
                     {/* تعمیر و نگهداری تاسیسات ساختمانی شامل سیستم‌های گرمایش و سرمایش. */}
-                  </p>
+                  
                   <span className="inline-flex items-center text-slate-400">
                     <span className="w-2 h-2 bg-cyan-400 rounded-full ml-2"></span>
                     ۱۴۰۱ تا ۱۴۰۳
