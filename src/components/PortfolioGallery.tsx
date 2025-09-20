@@ -106,9 +106,14 @@ const RevitPortfolioGallery = () => {
           title: '    ساختمان مسکونی 5 طبقه ',
           description: '    ساختمان مسکونی 5 طبقه ',
           sheetImages: [
-            '/maskoni5tabage/showtime.jpg',
-            '/mortgageimg/mortgage1.jpg',
-            '/mortgageimg/mortgage2.jpg',
+            '/maskoni5tabage/11.jpg',
+             '/maskoni5tabage/111.jpg',
+            '/maskoni5tabage/mechI.jpg',
+            '/maskoni5tabage/mechI1.jpg',
+            '/maskoni5tabage/۱۱۱۱۱.png',
+            '/maskoni5tabage/۱۱۱۱۱۱.png'
+          
+
           ],
           projectType: 'ساختمان مسکونی 5 طبقه بتنی',
           area: '1500 مترمربع',
