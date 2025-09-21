@@ -59,7 +59,7 @@ const RevitPortfolioGallery = () => {
     },
     {
       id: 2,
-      title: 'طرح تأسیسات مکانیکی ساختمان',
+      title: 'طراحی تأسیسات مکانیکی ساختمان',
       description: 'مدل‌سازی و طراحی موتورخانه یک ساختمان اداری 8 طبقه',
       sheetImages: [
         '/mechimg/mechanicalRoom.jpg',
@@ -91,7 +91,7 @@ const RevitPortfolioGallery = () => {
       ],
       projectType: 'سازه بتنی',
       area: '3200 مترمربع',
-      floors: 4,
+      floors: 6,
       software: ['Revit Structure'],
       projectDetails: {
         client: '-',
@@ -111,7 +111,8 @@ const RevitPortfolioGallery = () => {
             '/maskoni5tabage/mechI.jpg',
             '/maskoni5tabage/mechI1.jpg',
             '/maskoni5tabage/۱۱۱۱۱.png',
-            '/maskoni5tabage/۱۱۱۱۱۱.png'
+            '/maskoni5tabage/۱۱۱۱۱۱.png',
+            '/maskoni5tabage/mech-I-1.jpg'
           
 
           ],
@@ -122,7 +123,7 @@ const RevitPortfolioGallery = () => {
           projectDetails: {
             client: '-',
             location: 'تهران',
-            year: '1402',
+            year: '1403',
             status: 'تکمیل شده'
           }
         }

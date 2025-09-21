@@ -1,6 +1,11 @@
 "use client";
 
-import { HeartIcon, EnvelopeIcon, PhoneIcon, MapPinIcon } from "@heroicons/react/24/solid";
+import {
+  HeartIcon,
+  EnvelopeIcon,
+  PhoneIcon,
+  MapPinIcon,
+} from "@heroicons/react/24/solid";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -9,7 +14,7 @@ export default function Footer() {
     <footer dir="rtl" className="relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-cyan-900 to-blue-900"></div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-700/20 via-transparent to-transparent"></div>
-      
+
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Personal Info */}
@@ -17,11 +22,9 @@ export default function Footer() {
             <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-300">
               مهدی رضایی
             </h3>
-            <p className="text-cyan-100 mb-4 text-lg">
-            مهندس مکانیک   
-            </p>
+            <p className="text-cyan-100 mb-4 text-lg">مهندس مکانیک</p>
             <p className="text-cyan-200/80">
-              متخصص در  مدلسازی با Revit و علاقه‌مند به برنامه‌نویسی
+              متخصص در مدلسازی با Revit و علاقه‌مند به برنامه‌نویسی
             </p>
           </div>
 
@@ -66,7 +69,7 @@ export default function Footer() {
               </p>
               <p className="flex items-center justify-center md:justify-start gap-2">
                 <MapPinIcon className="w-5 h-5 text-cyan-300" />
-                قائم‌شهر، مازندران
+                تهران{" "}
               </p>
             </div>
           </div>
