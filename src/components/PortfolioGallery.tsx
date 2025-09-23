@@ -82,7 +82,7 @@ const RevitPortfolioGallery = () => {
     {
       id: 3,
       title: ' سازه اسکلت بتنی',
-      description: 'طراحی سازه  4 طبقه     ',
+      description: '  6 طبقه',
       sheetImages: [
         '/conceretimg/3d columnRebar.jpg',
         '/conceretimg/beamplan.jpg',
@@ -109,6 +109,7 @@ const RevitPortfolioGallery = () => {
             '/maskoni5tabage/11.jpg',
              '/maskoni5tabage/111.jpg',
             '/maskoni5tabage/mechI.jpg',
+            '/maskoni5tabage/mech-09ns.jpg',
             '/maskoni5tabage/mechI1.jpg',
             '/maskoni5tabage/۱۱۱۱۱.png',
             '/maskoni5tabage/۱۱۱۱۱۱.png',
