@@ -75,7 +75,7 @@ const RevitPortfolioGallery = () => {
       projectDetails: {
         client: '-',
         location: 'تهران',
-        year: '1401',
+        year: '1403',
         status: 'تکمیل شده'
       }
     },
@@ -117,10 +117,10 @@ const RevitPortfolioGallery = () => {
           
 
           ],
-          projectType: 'ساختمان مسکونی 5 طبقه بتنی',
+          projectType: 'مدلسازی تاسیسات ساختمان مسکونی 5 طبقه بتنی',
           area: '1500 مترمربع',
           floors: 5,
-          software: ['Revit Architecture'],
+          software: ['Revit MEP'],
           projectDetails: {
             client: '-',
             location: 'تهران',

@@ -75,8 +75,8 @@ export default function Resume() {
                     تجربه کاری
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">
-                    {/* تکنسین تعمیر و نگهداری تاسیسات */}
-                    طراح تاسیسات مکانیک و مدل‌ساز BIM
+                    تکنسین تعمیر و نگهداری تاسیسات
+                    {/* طراح تاسیسات مکانیک و مدل‌ساز BIM */}
                   </h3>
                   <h4 className="text-lg text-cyan-300 mb-3">
                     شرکت رسام مدرن فرداد
