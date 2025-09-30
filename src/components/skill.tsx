@@ -9,30 +9,26 @@ export default function Skills() {
       icon: <CogIcon className="w-8 h-8 text-cyan-500" />,
       title: "نرم‌افزارهای مهندسی",
       skills: [
-        { name: "Revit", level: 90 },
-        { name: "AutoCAD", level: 95 },
-        { name: "MSP", level: 85 },
-        
+        "Revit",
+        "AutoCAD", 
+        "MSP",
       ],
     },
     {
       icon: <ComputerDesktopIcon className="w-8 h-8 text-blue-500" />,
       title: "نرم‌افزارهای عمومی",
       skills: [
-        { name: "Word", level: 90 },
-        { name: "Excel", level: 85 },
-        { name: "PowerPoint", level: 80 },
-        
+        "Word",
+        "Excel",
+        "PowerPoint",
       ],
     },
     {
       icon: <CodeBracketIcon className="w-8 h-8 text-indigo-500" />,
       title: "برنامه‌نویسی",
       skills: [
-        { name: "JavaScript", level: 80 },
-        { name: "React", level: 75 },
-       
-        
+        "JavaScript",
+        "React",
       ],
     },
   ];
@@ -73,21 +69,13 @@ export default function Skills() {
                 <h3 className="text-xl font-bold">{category.title}</h3>
               </div>
               
-              <div className="space-y-5">
+              <div className="space-y-3">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex}>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium">{skill.name}</span>
-                      <span className="text-sm font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className="w-full bg-slate-700 rounded-full h-2.5">
-                      <div 
-                        className="h-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-1000 ease-out"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
+                  <div 
+                    key={skillIndex}
+                    className="py-3 px-4 rounded-lg bg-slate-700/30 hover:bg-slate-700/50 border border-slate-600/30 hover:border-cyan-500/30 transition-all duration-300"
+                  >
+                    <span className="font-medium">{skill}</span>
                   </div>
                 ))}
               </div>
