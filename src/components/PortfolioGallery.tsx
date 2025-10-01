@@ -35,7 +35,7 @@ const RevitPortfolioGallery = () => {
   const projects: RevitProject[] = [
   {
     id: 4,
-    title: '    ساختمان مسکونی 5 طبقه ',
+    title: '   تاسیسات  ساختمان مسکونی 5 طبقه',
     description: '    ساختمان مسکونی 5 طبقه ',
     sheetImages: [
       '/maskoni5tabage/11.jpg',
