@@ -32,104 +32,98 @@ const RevitPortfolioGallery = () => {
   const [zoomedImage, setZoomedImage] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // داده‌های پروژه‌ها با ساختار ساده شده
   const projects: RevitProject[] = [
-    {
-      id: 1,
-      title: '   مدلسازی سازه ساختمان اسکلت فلزی',
-      description: 'جزئیات اجرایی  ساختمان اداری',
-      sheetImages: [
-        '/structurimg/stairs2.jpg',
-        '/structurimg/stairs1.jpg',
-        '/structurimg/jhko.jpg',
-        '/structurimg/jl۴k.jpg',
-        '/structurimg/BADBAND.jpg',
-        '/structurimg/baseplate.jpg'
-      ],
-      projectType: 'جزئیات سازه',
-      area: '-',
-      floors: 10,
-      software: ['Revit Structure'],
-      projectDetails: {
-        client: '-',
-        location: 'تهران',
-        year: '1403',
-        status: 'تکمیل شده'
-      }
-    },
-    {
-      id: 2,
-      title: 'طراحی تأسیسات مکانیکی ساختمان',
-      description: 'مدل‌سازی و طراحی موتورخانه یک ساختمان اداری 8 طبقه',
-      sheetImages: [
-        '/mechimg/mechanicalRoom.jpg',
-        '/mechimg/Boiler Room.jpg',
-        '/mechimg/Boiler Room۰۹.jpg',
-        // برای ویدیوها
-        '/mechimg/Boiler Room Walkthrough 2.mp4'
-      ],
-      projectType: 'تاسیسات مکانیکی',
-      area: '2500 مترمربع',
-      floors: 8,
-      software: ['Revit MEP', 'AutoCAD'],
-      projectDetails: {
-        client: '-',
-        location: 'تهران',
-        year: '1403',
-        status: 'تکمیل شده'
-      }
-    },
-    {
-      id: 3,
-      title: ' سازه اسکلت بتنی',
-      description: '  6 طبقه',
-      sheetImages: [
-        '/conceretimg/3d columnRebar.jpg',
-        '/conceretimg/beamplan.jpg',
-        '/conceretimg/3DSTAIR.jpg',
-        '/conceretimg/3dST.jpg'
-      ],
-      projectType: 'سازه بتنی',
-      area: '3200 مترمربع',
-      floors: 6,
-      software: ['Revit Structure'],
-      projectDetails: {
-        client: '-',
-        location: '-',
-        year: '1403',
-        status: 'تکمیل شده'
-      }
-    },
-    // ... existing code ...
-        {
-          id: 4,
-          title: '    ساختمان مسکونی 5 طبقه ',
-          description: '    ساختمان مسکونی 5 طبقه ',
-          sheetImages: [
-            '/maskoni5tabage/11.jpg',
-             '/maskoni5tabage/111.jpg',
-            '/maskoni5tabage/mechI.jpg',
-            '/maskoni5tabage/mech-09ns.jpg',
-            '/maskoni5tabage/mechI1.jpg',
-            '/maskoni5tabage/۱۱۱۱۱.png',
-            '/maskoni5tabage/۱۱۱۱۱۱.png',
-            '/maskoni5tabage/mech-I-1.jpg'
-          
-
-          ],
-          projectType: 'مدلسازی تاسیسات ساختمان مسکونی 5 طبقه بتنی',
-          area: '1500 مترمربع',
-          floors: 5,
-          software: ['Revit MEP'],
-          projectDetails: {
-            client: '-',
-            location: 'تهران',
-            year: '1403',
-            status: 'تکمیل شده'
-          }
-        }
-    // ... existing code ...
-  ];
+  {
+    id: 4,
+    title: '    ساختمان مسکونی 5 طبقه ',
+    description: '    ساختمان مسکونی 5 طبقه ',
+    sheetImages: [
+      '/maskoni5tabage/11.jpg',
+      '/maskoni5tabage/111.jpg',
+      '/maskoni5tabage/mechI.jpg',
+      '/maskoni5tabage/mech-09ns.jpg',
+      '/maskoni5tabage/mechI1.jpg',
+      '/maskoni5tabage/۱۱۱۱۱.png',
+      '/maskoni5tabage/۱۱۱۱۱۱.png',
+      '/maskoni5tabage/mech-I-1.jpg'
+    ],
+    projectType: 'مدلسازی تاسیسات ساختمان مسکونی 5 طبقه بتنی',
+    area: '1500 مترمربع',
+    floors: 5,
+    software: ['Revit MEP'],
+    projectDetails: {
+      client: '-',
+      location: 'تهران',
+      year: '1403',
+      status: 'تکمیل شده'
+    }
+  },
+  {
+    id: 2,
+    title: 'طراحی تأسیسات مکانیکی ساختمان',
+    description: 'مدل‌سازی و طراحی موتورخانه یک ساختمان اداری 8 طبقه',
+    sheetImages: [
+      '/mechimg/mechanicalRoom.jpg',
+      '/mechimg/Boiler Room.jpg',
+      '/mechimg/Boiler Room۰۹.jpg',
+      '/mechimg/Boiler Room Walkthrough 2.mp4'
+    ],
+    projectType: 'تاسیسات مکانیکی',
+    area: '2500 مترمربع',
+    floors: 8,
+    software: ['Revit MEP', 'AutoCAD'],
+    projectDetails: {
+      client: '-',
+      location: 'تهران',
+      year: '1403',
+      status: 'تکمیل شده'
+    }
+  },
+  {
+    id: 1,
+    title: '   مدلسازی سازه ساختمان اسکلت فلزی',
+    description: 'جزئیات اجرایی  ساختمان اداری',
+    sheetImages: [
+      '/structurimg/stairs2.jpg',
+      '/structurimg/stairs1.jpg',
+      '/structurimg/jhko.jpg',
+      '/structurimg/jl۴k.jpg',
+      '/structurimg/BADBAND.jpg',
+      '/structurimg/baseplate.jpg'
+    ],
+    projectType: 'جزئیات سازه',
+    area: '-',
+    floors: 10,
+    software: ['Revit Structure'],
+    projectDetails: {
+      client: '-',
+      location: 'تهران',
+      year: '1403',
+      status: 'تکمیل شده'
+    }
+  },
+  {
+    id: 3,
+    title: ' سازه اسکلت بتنی',
+    description: '  6 طبقه',
+    sheetImages: [
+      '/conceretimg/3d columnRebar.jpg',
+      '/conceretimg/beamplan.jpg',
+      '/conceretimg/3DSTAIR.jpg',
+      '/conceretimg/3dST.jpg'
+    ],
+    projectType: 'سازه بتنی',
+    area: '3200 مترمربع',
+    floors: 6,
+    software: ['Revit Structure'],
+    projectDetails: {
+      client: '-',
+      location: '-',
+      year: '1403',
+      status: 'تکمیل شده'
+    }
+  }
+];
 
   const projectTypes = ['all', 'جزئیات سازه', 'تاسیسات مکانیکی', 'ساختمان مسکونی 5 طبقه بتنی'];
 
